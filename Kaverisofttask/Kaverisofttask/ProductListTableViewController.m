@@ -31,7 +31,6 @@
 {
     NSError *error;
     NSArray *responseArray=[NSJSONSerialization JSONObjectWithData:responseData options:kNilOptions error:&error];
-    NSLog(@"%@",responseArray);
     if(responseArray.count>0)
     {
         for(NSDictionary *dic in responseArray)
@@ -53,8 +52,12 @@
             }
             
         }
-        
-       [self.tableView reloadData];
+        NSLog(@"%@",self.bookDataArray);
+        NSLog(@"%@",self.modelDataArray);
+        NSLog(@"%@",self.musicDataArray);
+        [NSTimer scheduledTimerWithTimeInterval:2 target:self.tableView selector:@selector(reloadData) userInfo:nil repeats:NO];
+      
+
     }
 }
 -(NSMutableArray *)bookDataArray
@@ -126,7 +129,7 @@
             return 132;
          case 1:
             return 121;
-            case 2:
+        case 2:
             return 117;
         default:
             return 44;
@@ -140,7 +143,8 @@
     CustomTableViewCell *cell;
     
     switch (indexPath.section) {
-        case 0:{
+        case 0:
+        {
             cell = [tableView dequeueReusableCellWithIdentifier:bookReusableIdentifier forIndexPath:indexPath];
             NSDictionary *bookDictionary=[self.bookDataArray objectAtIndex:indexPath.row];
             cell.bookTitlteLabel.text=[bookDictionary objectForKey:@"title"];
@@ -157,6 +161,8 @@
             }
            
             cell.bookDescriptionLabel.text=[arr componentsJoinedByString:@" "];
+            
+            
         }
             break;
         case 1:
@@ -165,25 +171,34 @@
             NSDictionary *camraDictionary=[self.modelDataArray objectAtIndex:indexPath.row];
             NSString *thumbUrl=[camraDictionary objectForKey:@"picture"];
             thumbUrl=[thumbUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            if([UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:thumbUrl]]]!=nil)
-                {
-            cell.modelthumbnailImage.image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:thumbUrl]]];
-                }
+            
+                    dispatch_async(KBQues, ^{
+                        NSData *data=[NSData dataWithContentsOfURL:[NSURL URLWithString:thumbUrl]];
+                        dispatch_async(dispatch_get_main_queue(), ^{
+                            [self loadImageFromData:data forCell:cell];
+                        });
+                       
+                    });
+                    
+           
+            
             cell.modelNameLabel.text=[camraDictionary objectForKey:@"model"];
             cell.modelPriceLabel.text=[NSString stringWithFormat:@"₨ %@",[camraDictionary objectForKey:@"price"]];
+           
         }
             
-            break;
+         break;
         case 2:
-        {
+        
              cell=[tableView dequeueReusableCellWithIdentifier:musicReusableIdentifier forIndexPath:indexPath];
             NSDictionary *musicDictionary=[self.musicDataArray objectAtIndex:indexPath.row];
             
             cell.musicTitleLabel.text=[musicDictionary objectForKey:@"title"];
             cell.musicArtistNameLabel.text=[musicDictionary objectForKey:@"artist"];
             cell.musicAlbumNameLabel.text=[musicDictionary objectForKey:@"album"];
-        }
-            break;
+             break;
+        
+           
             
     }
     
@@ -192,7 +207,10 @@
     return cell;
 }
 
-
+-(void)loadImageFromData:(NSData *)data forCell:(CustomTableViewCell *)cell
+{
+     cell.modelthumbnailImage.image=[UIImage imageWithData:data];
+}
 /*
  // Override to support conditional editing of the table view.
  - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
