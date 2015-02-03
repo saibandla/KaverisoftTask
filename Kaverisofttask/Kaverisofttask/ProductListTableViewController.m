@@ -44,16 +44,16 @@
             if([[dic allKeys]containsObject:@"camera"])
             {
                 NSDictionary *dataDic=[dic objectForKey:@"camera"];
-                [self.bookDataArray addObject:dataDic];
+                [self.modelDataArray addObject:dataDic];
             }
             if([[dic allKeys]containsObject:@"music"])
             {
                 NSDictionary *dataDic=[dic objectForKey:@"music"];
-                [self.bookDataArray addObject:dataDic];
+                [self.musicDataArray addObject:dataDic];
             }
             
         }
-        [self.tableView reloadData];
+       [self.tableView reloadData];
     }
 }
 -(NSMutableArray *)bookDataArray
@@ -118,7 +118,20 @@
     
 }
 
-
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    switch (indexPath.section) {
+        case 0:
+            return 132;
+         case 1:
+            return 121;
+            case 2:
+            return 117;
+        default:
+            return 44;
+        
+    }
+}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     NSString *bookReusableIdentifier=@"bookCell";
     NSString *cameraReusableIdentifier=@"cameraCell";
@@ -131,7 +144,7 @@
             NSDictionary *bookDictionary=[self.bookDataArray objectAtIndex:indexPath.row];
             cell.bookTitlteLabel.text=[bookDictionary objectForKey:@"title"];
             cell.bookAuthorNameLabel.text=[bookDictionary objectForKey:@"authors"];
-            cell.bookpriceLabel.text=[bookDictionary objectForKey:@"price"];
+            cell.bookpriceLabel.text=[NSString stringWithFormat:@"%@",[bookDictionary objectForKey:@"price"]];
             cell.bookDescriptionLabel.text=[bookDictionary objectForKey:@"description"];
         }
             break;
@@ -143,7 +156,7 @@
             thumbUrl=[thumbUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
             cell.modelthumbnailImage.image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:thumbUrl]]];
             cell.modelNameLabel.text=[camraDictionary objectForKey:@"model"];
-            cell.modelPriceLabel.text=[camraDictionary objectForKey:@"price"];
+            cell.modelPriceLabel.text=[NSString stringWithFormat:@"%@",[camraDictionary objectForKey:@"price"]];
         }
             
             break;

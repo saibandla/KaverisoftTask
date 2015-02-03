@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C05D0131A80920B0046957E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C05D0121A80920B0046957E /* Default-568h@2x.png */; };
 		6C68DB1F1A80445C00DEC57D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C68DB1E1A80445C00DEC57D /* main.m */; };
 		6C68DB221A80445C00DEC57D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C68DB211A80445C00DEC57D /* AppDelegate.m */; };
 		6C68DB281A80445C00DEC57D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6C68DB261A80445C00DEC57D /* Main.storyboard */; };
 		6C68DB2A1A80445C00DEC57D /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6C68DB291A80445C00DEC57D /* Images.xcassets */; };
-		6C68DB2D1A80445C00DEC57D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C68DB2B1A80445C00DEC57D /* LaunchScreen.xib */; };
 		6C68DB391A80445C00DEC57D /* KaverisofttaskTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C68DB381A80445C00DEC57D /* KaverisofttaskTests.m */; };
 		6C68DB441A8047B200DEC57D /* ProductListTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C68DB431A8047B200DEC57D /* ProductListTableViewController.m */; };
 		6C68DB471A804BE800DEC57D /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C68DB461A804BE800DEC57D /* CustomTableViewCell.m */; };
@@ -28,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4C05D0121A80920B0046957E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		6C68DB191A80445C00DEC57D /* Kaverisofttask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kaverisofttask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C68DB1D1A80445C00DEC57D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C68DB1E1A80445C00DEC57D /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -35,7 +36,6 @@
 		6C68DB211A80445C00DEC57D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		6C68DB271A80445C00DEC57D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6C68DB291A80445C00DEC57D /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		6C68DB2C1A80445C00DEC57D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		6C68DB321A80445C00DEC57D /* KaverisofttaskTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KaverisofttaskTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C68DB371A80445C00DEC57D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6C68DB381A80445C00DEC57D /* KaverisofttaskTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KaverisofttaskTests.m; sourceTree = "<group>"; };
@@ -66,6 +66,7 @@
 		6C68DB101A80445C00DEC57D = {
 			isa = PBXGroup;
 			children = (
+				4C05D0121A80920B0046957E /* Default-568h@2x.png */,
 				6C68DB1B1A80445C00DEC57D /* Kaverisofttask */,
 				6C68DB351A80445C00DEC57D /* KaverisofttaskTests */,
 				6C68DB1A1A80445C00DEC57D /* Products */,
@@ -92,7 +93,6 @@
 				6C68DB461A804BE800DEC57D /* CustomTableViewCell.m */,
 				6C68DB261A80445C00DEC57D /* Main.storyboard */,
 				6C68DB291A80445C00DEC57D /* Images.xcassets */,
-				6C68DB2B1A80445C00DEC57D /* LaunchScreen.xib */,
 				6C68DB1C1A80445C00DEC57D /* Supporting Files */,
 			);
 			path = Kaverisofttask;
@@ -205,7 +205,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C68DB281A80445C00DEC57D /* Main.storyboard in Resources */,
-				6C68DB2D1A80445C00DEC57D /* LaunchScreen.xib in Resources */,
+				4C05D0131A80920B0046957E /* Default-568h@2x.png in Resources */,
 				6C68DB2A1A80445C00DEC57D /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,14 +258,6 @@
 			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
-		6C68DB2B1A80445C00DEC57D /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6C68DB2C1A80445C00DEC57D /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -303,7 +295,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -338,7 +330,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -350,6 +342,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Kaverisofttask/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -360,6 +353,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = Kaverisofttask/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -418,6 +412,7 @@
 				6C68DB3E1A80445C00DEC57D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6C68DB3F1A80445C00DEC57D /* Build configuration list for PBXNativeTarget "KaverisofttaskTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +421,7 @@
 				6C68DB411A80445C00DEC57D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
