@@ -55,9 +55,10 @@
         NSLog(@"%@",self.bookDataArray);
         NSLog(@"%@",self.modelDataArray);
         NSLog(@"%@",self.musicDataArray);
-        [NSTimer scheduledTimerWithTimeInterval:2 target:self.tableView selector:@selector(reloadData) userInfo:nil repeats:NO];
-      
-
+        [self.tableView reloadData];
+        
+        
+        
     }
 }
 -(NSMutableArray *)bookDataArray
@@ -127,13 +128,13 @@
     switch (indexPath.section) {
         case 0:
             return 132;
-         case 1:
+        case 1:
             return 121;
         case 2:
             return 117;
         default:
             return 44;
-        
+            
     }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -142,74 +143,70 @@
     NSString *musicReusableIdentifier=@"musicCell";
     CustomTableViewCell *cell;
     
-    switch (indexPath.section) {
-        case 0:
-        {
-            cell = [tableView dequeueReusableCellWithIdentifier:bookReusableIdentifier forIndexPath:indexPath];
-            NSDictionary *bookDictionary=[self.bookDataArray objectAtIndex:indexPath.row];
-            cell.bookTitlteLabel.text=[bookDictionary objectForKey:@"title"];
-            cell.bookAuthorNameLabel.text=[bookDictionary objectForKey:@"authors"];
-            cell.bookpriceLabel.text=[NSString stringWithFormat:@"₨ %@",[bookDictionary objectForKey:@"price"]];
-            NSString *desc=[bookDictionary objectForKey:@"description"];
-           NSMutableArray *arr=[[NSMutableArray alloc]initWithArray: [desc componentsSeparatedByString:@" "]];
-            while (1) {
-                [arr removeLastObject];
-                if(arr.count==10)
-                {
-                    break;
-                }
+    if(indexPath.section==0)
+    {
+        cell = [tableView dequeueReusableCellWithIdentifier:bookReusableIdentifier forIndexPath:indexPath];
+        NSDictionary *bookDictionary=[self.bookDataArray objectAtIndex:indexPath.row];
+        cell.bookTitlteLabel.text=[bookDictionary objectForKey:@"title"];
+        cell.bookAuthorNameLabel.text=[bookDictionary objectForKey:@"authors"];
+        cell.bookpriceLabel.text=[NSString stringWithFormat:@"₨ %@",[bookDictionary objectForKey:@"price"]];
+        NSString *desc=[bookDictionary objectForKey:@"description"];
+        NSMutableArray *arr=[[NSMutableArray alloc]initWithArray: [desc componentsSeparatedByString:@" "]];
+        while (1) {
+            [arr removeLastObject];
+            if(arr.count==10)
+            {
+                break;
             }
-           
-            cell.bookDescriptionLabel.text=[arr componentsJoinedByString:@" "];
-            
-            
         }
-            break;
-        case 1:
-        {
-            cell=[tableView dequeueReusableCellWithIdentifier:cameraReusableIdentifier forIndexPath:indexPath];
-            NSDictionary *camraDictionary=[self.modelDataArray objectAtIndex:indexPath.row];
-            NSString *thumbUrl=[camraDictionary objectForKey:@"picture"];
-            thumbUrl=[thumbUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-            
-                    dispatch_async(KBQues, ^{
-                        NSData *data=[NSData dataWithContentsOfURL:[NSURL URLWithString:thumbUrl]];
-                        dispatch_async(dispatch_get_main_queue(), ^{
-                            [self loadImageFromData:data forCell:cell];
-                        });
-                       
-                    });
-                    
-           
-            
-            cell.modelNameLabel.text=[camraDictionary objectForKey:@"model"];
-            cell.modelPriceLabel.text=[NSString stringWithFormat:@"₨ %@",[camraDictionary objectForKey:@"price"]];
-           
-        }
-            
-         break;
-        case 2:
         
-             cell=[tableView dequeueReusableCellWithIdentifier:musicReusableIdentifier forIndexPath:indexPath];
-            NSDictionary *musicDictionary=[self.musicDataArray objectAtIndex:indexPath.row];
-            
-            cell.musicTitleLabel.text=[musicDictionary objectForKey:@"title"];
-            cell.musicArtistNameLabel.text=[musicDictionary objectForKey:@"artist"];
-            cell.musicAlbumNameLabel.text=[musicDictionary objectForKey:@"album"];
-             break;
+        cell.bookDescriptionLabel.text=[arr componentsJoinedByString:@" "];
         
-           
+        
+    }
+    
+    if(indexPath.section==1)
+    {
+        cell=[tableView dequeueReusableCellWithIdentifier:cameraReusableIdentifier forIndexPath:indexPath];
+        NSDictionary *camraDictionary=[self.modelDataArray objectAtIndex:indexPath.row];
+        NSString *thumbUrl=[camraDictionary objectForKey:@"picture"];
+        thumbUrl=[thumbUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+        
+        dispatch_async(KBQues, ^{
+            NSData *data=[NSData dataWithContentsOfURL:[NSURL URLWithString:thumbUrl]];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self loadImageFromData:data forCell:cell];
+            });
             
+        });
+        
+        
+        
+        cell.modelNameLabel.text=[camraDictionary objectForKey:@"model"];
+        cell.modelPriceLabel.text=[NSString stringWithFormat:@"₨ %@",[camraDictionary objectForKey:@"price"]];
+        
+    }
+    
+    if(indexPath.section==2)
+    {
+        cell=[tableView dequeueReusableCellWithIdentifier:musicReusableIdentifier forIndexPath:indexPath];
+        NSDictionary *musicDictionary=[self.musicDataArray objectAtIndex:indexPath.row];
+        
+        cell.musicTitleLabel.text=[musicDictionary objectForKey:@"title"];
+        cell.musicArtistNameLabel.text=[musicDictionary objectForKey:@"artist"];
+        cell.musicAlbumNameLabel.text=[musicDictionary objectForKey:@"album"];
     }
     
     
     
     return cell;
+    
+    
 }
 
 -(void)loadImageFromData:(NSData *)data forCell:(CustomTableViewCell *)cell
 {
-     cell.modelthumbnailImage.image=[UIImage imageWithData:data];
+    cell.modelthumbnailImage.image=[UIImage imageWithData:data];
 }
 /*
  // Override to support conditional editing of the table view.
