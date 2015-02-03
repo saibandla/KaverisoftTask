@@ -53,6 +53,7 @@
             }
             
         }
+        
        [self.tableView reloadData];
     }
 }
@@ -144,8 +145,18 @@
             NSDictionary *bookDictionary=[self.bookDataArray objectAtIndex:indexPath.row];
             cell.bookTitlteLabel.text=[bookDictionary objectForKey:@"title"];
             cell.bookAuthorNameLabel.text=[bookDictionary objectForKey:@"authors"];
-            cell.bookpriceLabel.text=[NSString stringWithFormat:@"%@",[bookDictionary objectForKey:@"price"]];
-            cell.bookDescriptionLabel.text=[bookDictionary objectForKey:@"description"];
+            cell.bookpriceLabel.text=[NSString stringWithFormat:@"₨ %@",[bookDictionary objectForKey:@"price"]];
+            NSString *desc=[bookDictionary objectForKey:@"description"];
+           NSMutableArray *arr=[[NSMutableArray alloc]initWithArray: [desc componentsSeparatedByString:@" "]];
+            while (1) {
+                [arr removeLastObject];
+                if(arr.count==10)
+                {
+                    break;
+                }
+            }
+           
+            cell.bookDescriptionLabel.text=[arr componentsJoinedByString:@" "];
         }
             break;
         case 1:
@@ -154,9 +165,12 @@
             NSDictionary *camraDictionary=[self.modelDataArray objectAtIndex:indexPath.row];
             NSString *thumbUrl=[camraDictionary objectForKey:@"picture"];
             thumbUrl=[thumbUrl stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+            if([UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:thumbUrl]]]!=nil)
+                {
             cell.modelthumbnailImage.image=[UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:thumbUrl]]];
+                }
             cell.modelNameLabel.text=[camraDictionary objectForKey:@"model"];
-            cell.modelPriceLabel.text=[NSString stringWithFormat:@"%@",[camraDictionary objectForKey:@"price"]];
+            cell.modelPriceLabel.text=[NSString stringWithFormat:@"₨ %@",[camraDictionary objectForKey:@"price"]];
         }
             
             break;
